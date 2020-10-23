@@ -1,2 +1,3 @@
-# transformersbattle
-Spring boot project for the battle of transformers
+# Battle of Transformers
+
+This is an application built to find the winning transformers team given a list of transformers.
