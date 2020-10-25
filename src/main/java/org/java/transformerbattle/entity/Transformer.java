@@ -11,6 +11,7 @@ public class Transformer  implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int transformerId;
     private String name;
+    private String type;
     private int strength;
     private int intelligence;
     private int speed;
@@ -18,7 +19,7 @@ public class Transformer  implements Serializable {
     private int rank;
     private int courage;
     private int firePower;
-    private String type;
+    private int skill;
 
     public int getTransformerId() {
         return transformerId;
@@ -99,4 +100,17 @@ public class Transformer  implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+
+    public int getSkill() {
+        return skill;
+    }
+
+    public void setSkill(int skill) {
+        this.skill = skill;
+    }
+
+    public int getOverallRating(){
+        return (this.strength + this.intelligence + this.speed + this.endurance + this.firePower);
+    }
+
 }

@@ -1,11 +1,14 @@
 package org.java.transformerbattle.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
-public class TransformerInData {
+public class TransformerInData implements Serializable {
 
+    @NotBlank(message = "Transformer name cannot be null or empty")
     private String name;
+    @NotBlank(message = "Transformer Type cannot be null or empty")
     private String type;
     private int strength;
     private int intelligence;
@@ -14,6 +17,7 @@ public class TransformerInData {
     private int rank;
     private int courage;
     private int firePower;
+    private int skill;
 
 
 
@@ -87,5 +91,13 @@ public class TransformerInData {
 
     public void setFirePower(int firePower) {
         this.firePower = firePower;
+    }
+
+    public int getSkill() {
+        return skill;
+    }
+
+    public void setSkill(int skill) {
+        this.skill = skill;
     }
 }

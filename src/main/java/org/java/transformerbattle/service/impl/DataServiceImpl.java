@@ -20,37 +20,37 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public void create(TransformerInData request) throws Exception{
+        if(!(request.getType().equalsIgnoreCase("A") || request.getType().equalsIgnoreCase("D")))
+            throw new Exception("Invalid transformer type");
         Transformer transformer = new Transformer();
         transformer.setName(request.getName());
-        transformer.setCourage(request.getCourage());
-        transformer.setEndurance(request.getEndurance());
-        transformer.setFirePower(request.getFirePower());
-        transformer.setIntelligence(request.getIntelligence());
-        transformer.setRank(request.getRank());
+        transformer.setType(request.getType());
         transformer.setStrength(request.getStrength());
+        transformer.setIntelligence(request.getIntelligence());
         transformer.setSpeed(request.getSpeed());
-        if(request.getType().equalsIgnoreCase("A") || request.getType().equalsIgnoreCase("D")){
-            transformer.setType(request.getType());
-            dataRepository.save(transformer);
-        }else{
-            throw new Exception("Invalid transformer type");
-        }
+        transformer.setEndurance(request.getEndurance());
+        transformer.setRank(request.getRank());
+        transformer.setCourage(request.getCourage());
+        transformer.setFirePower(request.getFirePower());
+        transformer.setSkill(request.getSkill());
+        dataRepository.save(transformer);
     }
 
     @Override
     public List<TransformerOutData> listAllTransformers() throws Exception{
         return dataRepository.findAll().stream().filter(Objects::nonNull).map(transformer -> {
             TransformerOutData data = new TransformerOutData();
-            data.setCourage(transformer.getCourage());
-            data.setEndurance(transformer.getEndurance());
-            data.setFirePower(transformer.getFirePower());
             data.setId(transformer.getTransformerId());
-            data.setIntelligence(transformer.getIntelligence());
             data.setName(transformer.getName());
-            data.setSpeed(transformer.getSpeed());
-            data.setStrength(transformer.getStrength());
-            data.setRank(transformer.getRank());
             data.setType(transformer.getType());
+            data.setStrength(transformer.getStrength());
+            data.setIntelligence(transformer.getIntelligence());
+            data.setSpeed(transformer.getSpeed());
+            data.setEndurance(transformer.getEndurance());
+            data.setRank(transformer.getRank());
+            data.setCourage(transformer.getCourage());
+            data.setFirePower(transformer.getFirePower());
+            data.setSkill(transformer.getSkill());
             return data;
         }).collect(Collectors.toList());
     }
@@ -62,26 +62,26 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public void updateTransformer(int id, TransformerInData transformer) throws Exception {
+        if(!(transformer.getType().equalsIgnoreCase("A") || transformer.getType().equalsIgnoreCase("D")))
+            throw new Exception("Invalid transformer type");
+
         Transformer existing = dataRepository.getOne(id);
         if(null!=existing){
             Transformer updateRequest = new Transformer();
-            updateRequest.setCourage(transformer.getCourage());
-            updateRequest.setEndurance(transformer.getEndurance());
-            updateRequest.setFirePower(transformer.getFirePower());
             updateRequest.setTransformerId(id);
-            updateRequest.setIntelligence(transformer.getIntelligence());
             updateRequest.setName(transformer.getName());
-            updateRequest.setSpeed(transformer.getSpeed());
+            updateRequest.setType(transformer.getType());
             updateRequest.setStrength(transformer.getStrength());
+            updateRequest.setIntelligence(transformer.getIntelligence());
+            updateRequest.setSpeed(transformer.getSpeed());
+            updateRequest.setEndurance(transformer.getEndurance());
             updateRequest.setRank(transformer.getRank());
-            if(transformer.getType().equalsIgnoreCase("A") || transformer.getType().equalsIgnoreCase("D")){
-                updateRequest.setType(transformer.getType());
-                dataRepository.save(updateRequest);
-            }else{
-                throw new Exception("Invalid transformer type");
-            }
+            updateRequest.setCourage(transformer.getCourage());
+            updateRequest.setFirePower(transformer.getFirePower());
+            updateRequest.setSkill(transformer.getSkill());
+            dataRepository.save(updateRequest);
         }else{
-            throw new Exception("Transfomer not found with given identifier");
+            throw new Exception("Transformer not found with given identifier");
         }
     }
 }

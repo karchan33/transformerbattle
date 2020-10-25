@@ -1,7 +1,9 @@
 package org.java.transformerbattle.model;
 
 
-public class TransformerOutData extends TransformerInData{
+import java.io.Serializable;
+
+public class TransformerOutData extends TransformerInData implements Serializable {
 
     private int id;
 

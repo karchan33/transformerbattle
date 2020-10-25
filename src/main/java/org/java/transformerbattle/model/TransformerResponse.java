@@ -1,9 +1,10 @@
 package org.java.transformerbattle.model;
 
 
+import java.io.Serializable;
 import java.util.List;
 
-public class TransformerResponse {
+public class TransformerResponse implements Serializable {
 
     private List<TransformerOutData> transformers;
 
