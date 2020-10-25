@@ -20,9 +20,18 @@ Instructions to deploy:
 6. Please refer http://localhost:8080/transformersbattle/swagger-ui/index.html for all information related to the created APIs
 7. Could be tested through swagger or use the information from swagger to test from other apps like Postman or Insomnia or SOAP UI
 
-Note: Application uses in-memory database, so the data will be lost once the server is stopped. DB console could be accessed at http://localhost:8080/transformersbattle/h2db
 
-#Sample Input for creating/updating a Transformer
+Assumptions and criteria for battle judgement
+1. Transformers are sorted in the ascending order of their rank.
+2. Order of rules applied
+    a) Name (if the name of transformer is either Optimus Prime or Predaking)
+    b) Courage and Strength (Courage higher by 4 or more and Strength higher by 3 or more)
+    c) Skill (Skill higher by 3 or more wins)
+    d) Overall rating (Transformer with higher overall rating wins)
+3. If Optimus Prime and Predaking face each other, game is concluded with all competitors destroyed.
+4. If there are no survivors, a message saying "No Survivors" is displayed along with the loosing team name.
+
+Sample Input for creating/updating a Transformer
                 
                 {
                     "name": "Soundwave",
@@ -37,10 +46,12 @@ Note: Application uses in-memory database, so the data will be lost once the ser
                     "skill": 9
                 }
 
-#Sample input for sending the IDs to battle
+Sample input for sending the IDs to battle
                 
                 {
                     "transformerIds": [1,2]
                 }
 
 Input to delete a transformer is the ID of the transformer as a path variable.
+
+Note: Application uses in-memory database, so the data will be lost once the server is stopped. DB console could be accessed at http://localhost:8080/transformersbattle/h2db
