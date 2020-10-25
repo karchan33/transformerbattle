@@ -23,6 +23,7 @@ Instructions to deploy:
 Note: Application uses in-memory database, so the data will be lost once the server is stopped. DB console could be accessed at http://localhost:8080/transformersbattle/h2db
 
 #Sample Input for creating/updating a Transformer
+                
                 {
                     "name": "Soundwave",
                     "type": "D",
@@ -37,6 +38,7 @@ Note: Application uses in-memory database, so the data will be lost once the ser
                 }
 
 #Sample input for sending the IDs to battle
+                
                 {
                     "transformerIds": [1,2]
                 }
